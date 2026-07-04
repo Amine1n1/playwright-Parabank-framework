@@ -1,0 +1,8 @@
+[ '24444' ]
+Promise {
+  <pending>,
+  [Symbol(async_id_symbol)]: 69989,
+  [Symbol(trigger_async_id_symbol)]: 67504,
+  [Symbol(kResourceStore)]: undefined
+}
+515.5

@@ -1,0 +1,18 @@
+[
+  {
+    id: 41449,
+    accountId: 38874,
+    type: 'Debit',
+    date: 1782691200000,
+    amount: 100,
+    description: 'Funds Transfer Sent'
+  },
+  {
+    id: 41671,
+    accountId: 38874,
+    type: 'Debit',
+    date: 1782691200000,
+    amount: 35,
+    description: 'Funds Transfer Sent'
+  }
+]

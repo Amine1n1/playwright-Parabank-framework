@@ -1,0 +1,242 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: api/login.api.spec.ts >> Login Tests API >> Successful Login
+- Location: tests/api/login.api.spec.ts:18:7
+
+# Error details
+
+```
+Error: expect(locator).toBeVisible() failed
+
+Locator: getByText('Your account was created successfully. You are now logged in.')
+Expected: visible
+Timeout: 20000ms
+Error: element(s) not found
+
+Call log:
+  - Expect "toBeVisible" with timeout 20000ms
+  - waiting for getByText('Your account was created successfully. You are now logged in.')
+
+```
+
+```yaml
+- link:
+  - /url: admin.htm
+  - img
+- link "ParaBank":
+  - /url: index.htm
+  - img "ParaBank"
+- paragraph: Experience the difference
+- list:
+  - listitem: Solutions
+  - listitem:
+    - link "About Us":
+      - /url: about.htm
+  - listitem:
+    - link "Services":
+      - /url: services.htm
+  - listitem:
+    - link "Products":
+      - /url: http://www.parasoft.com/jsp/products.jsp
+  - listitem:
+    - link "Locations":
+      - /url: http://www.parasoft.com/jsp/pr/contacts.jsp
+  - listitem:
+    - link "Admin Page":
+      - /url: admin.htm
+- list:
+  - listitem:
+    - link "home":
+      - /url: index.htm
+  - listitem:
+    - link "about":
+      - /url: about.htm
+  - listitem:
+    - link "contact":
+      - /url: contact.htm
+- heading "Customer Login" [level=2]
+- paragraph: Username
+- textbox
+- paragraph: Password
+- textbox
+- button "Log In"
+- paragraph:
+  - link "Forgot login info?":
+    - /url: lookup.htm
+- paragraph:
+  - link "Register":
+    - /url: register.htm
+- heading "Signing up is easy!" [level=1]
+- paragraph: If you have an account with us you can sign-up for free instant online access. You will have to provide some personal information.
+- table:
+  - rowgroup:
+    - 'row "First Name: amine"':
+      - cell "First Name:"
+      - cell "amine":
+        - textbox: amine
+      - cell
+    - 'row "Last Name: test"':
+      - cell "Last Name:"
+      - cell "test":
+        - textbox: test
+      - cell
+    - 'row "Address: road"':
+      - cell "Address:"
+      - cell "road":
+        - textbox: road
+      - cell
+    - 'row "City: Dallas"':
+      - cell "City:"
+      - cell "Dallas":
+        - textbox: Dallas
+      - cell
+    - 'row "State: Texas"':
+      - cell "State:"
+      - cell "Texas":
+        - textbox: Texas
+      - cell
+    - 'row "Zip Code: 12345"':
+      - cell "Zip Code:"
+      - cell "12345":
+        - textbox: "12345"
+      - cell
+    - 'row "Phone #: 013566787765"':
+      - 'cell "Phone #:"'
+      - cell "013566787765":
+        - textbox: "013566787765"
+      - cell
+    - 'row "SSN: 9876"':
+      - cell "SSN:"
+      - cell "9876":
+        - textbox: "9876"
+      - cell
+    - row:
+      - cell
+    - 'row "Username: amine_1783196085205 This username already exists."':
+      - cell "Username:"
+      - cell "amine_1783196085205":
+        - textbox: amine_1783196085205
+      - cell "This username already exists."
+    - row "Password:":
+      - cell "Password:"
+      - cell:
+        - textbox
+      - cell
+    - row "Confirm:":
+      - cell "Confirm:"
+      - cell:
+        - textbox
+      - cell
+    - row "Register":
+      - cell
+      - cell "Register":
+        - button "Register"
+- list:
+  - listitem:
+    - link "Home":
+      - /url: index.htm
+    - text: "|"
+  - listitem:
+    - link "About Us":
+      - /url: about.htm
+    - text: "|"
+  - listitem:
+    - link "Services":
+      - /url: services.htm
+    - text: "|"
+  - listitem:
+    - link "Products":
+      - /url: http://www.parasoft.com/jsp/products.jsp
+    - text: "|"
+  - listitem:
+    - link "Locations":
+      - /url: http://www.parasoft.com/jsp/pr/contacts.jsp
+    - text: "|"
+  - listitem:
+    - link "Forum":
+      - /url: http://forums.parasoft.com/
+    - text: "|"
+  - listitem:
+    - link "Site Map":
+      - /url: sitemap.htm
+    - text: "|"
+  - listitem:
+    - link "Contact Us":
+      - /url: contact.htm
+- paragraph: © Parasoft. All rights reserved.
+- list:
+  - listitem: "Visit us at:"
+  - listitem:
+    - link "www.parasoft.com":
+      - /url: http://www.parasoft.com/
+```
+
+# Test source
+
+```ts
+  1  | import { Page, Locator, expect } from '@playwright/test';
+  2  | 
+  3  | export abstract class BasePage {
+  4  |   constructor(protected readonly page: Page) {}
+  5  | 
+  6  |   /*---------Navigation------------*/
+  7  |   // Navigate to a specific URL path.
+  8  |   protected async goToUrl(path: string) {
+  9  |     await this.page.goto(path);
+  10 |   }
+  11 | 
+  12 |   /*---------Low-level helpers (protected)------------*/
+  13 |   protected async BasePageClick(selector: string | Locator) {
+  14 |     await this.toLocator(selector).click();
+  15 |   }
+  16 | 
+  17 |   protected async BasePageClickWithTestId(testId: string) {
+  18 |     await this.page.getByTestId(testId).click();
+  19 |   }
+  20 | 
+  21 |   protected async BasePageFill(selector: string | Locator, value: string) {
+  22 |     await this.toLocator(selector).fill(value);
+  23 |   }
+  24 | 
+  25 |   protected async BasePageSelectOption(selector: string | Locator, value: string) {
+  26 |     await this.toLocator(selector).selectOption(value);
+  27 |   }
+  28 | 
+  29 |   protected async BasePageCheck(selector: string | Locator) {
+  30 |     await this.toLocator(selector).check();
+  31 |   }
+  32 | 
+  33 |   protected async BasePageFillWithTestId(testId: string, value: string) {
+  34 |     await this.page.getByTestId(testId).fill(value);
+  35 |   }
+  36 | 
+  37 |   protected async BasePageExpectVisible(selector: string | Locator) {
+> 38 |     await expect(this.toLocator(selector)).toBeVisible();
+     |                                            ^ Error: expect(locator).toBeVisible() failed
+  39 |   }
+  40 | 
+  41 |   protected async BasePageExpectHidden(selector: string | Locator) {
+  42 |     await expect(this.toLocator(selector)).toBeHidden();
+  43 |   }
+  44 | 
+  45 |    protected async BasePageExpectEnabled(selector: string | Locator) {
+  46 |     await expect(this.toLocator(selector)).toBeEnabled();
+  47 |   }
+  48 | 
+  49 |   /*---------Utility------------*/
+  50 |   // This method is used to convert a string selector into a Locator.
+  51 |   protected toLocator(selector: string | Locator): Locator {
+  52 |     return typeof(selector) === 'string' ? this.page.locator(selector) : selector;
+  53 |   }
+  54 | 
+  55 |   public Locator(selector: string | Locator): Locator {
+  56 |     return this.toLocator(selector);
+  57 |   }
+  58 | }
+```

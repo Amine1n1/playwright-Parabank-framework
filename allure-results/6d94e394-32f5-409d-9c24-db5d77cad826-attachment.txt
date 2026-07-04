@@ -1,0 +1,9 @@
+{
+  firstname: '',
+  lastname: '',
+  address: { street: 'road', city: 'Dallas', state: 'Texas', zipcode: '12345' },
+  phone: '',
+  ssn: '',
+  username: 'amine1782505407173',
+  password: 'test'
+}

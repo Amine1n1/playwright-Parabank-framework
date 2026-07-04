@@ -1,0 +1,8 @@
+{
+  id: 15542,
+  firstName: 'amine',
+  lastName: 'test',
+  address: { street: 'road', city: 'Dallas', state: 'Texas', zipCode: '12345' },
+  phoneNumber: '013566787765',
+  ssn: '9876'
+}

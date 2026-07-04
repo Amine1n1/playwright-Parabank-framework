@@ -1,0 +1,1 @@
+[ { id: 14454, customerId: 13100, type: 'CHECKING', balance: 500 } ]
