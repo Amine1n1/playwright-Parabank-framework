@@ -1,5 +1,6 @@
 # 🏦 Parabank Test Automation Framework
 
+![Playwright Tests](https://github.com/Amine1n1/playwright-Parabank-framework/actions/workflows/playwright.yml/badge.svg)
 A professional end-to-end test automation framework for the [ParaBank](https://parabank.parasoft.com) demo banking application, built with **Playwright** and **TypeScript**. Covers UI, API, and combined UI+API test scenarios.
 
 ---

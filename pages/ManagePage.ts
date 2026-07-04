@@ -6,7 +6,7 @@
 import { Page } from '@playwright/test';
 import { LoginPage } from './LoginPage';
 import { RegisterPage } from './RegisterPage';
-import { OpenAccountPage } from './openAccountPage';
+import { OpenAccountPage } from './OpenAccountPage';
 import { OverviewPage } from './OverviewPage';
 import { BillPayPage } from './BillPayPage';
 import { TransferPage } from './TransferPage';
