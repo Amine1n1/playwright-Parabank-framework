@@ -1,6 +1,7 @@
 import { test as setup, expect } from '@playwright/test';
 import 'dotenv/config';
-import { newUser } from './test-data/userData';
+import { createNewUser } from './test-data/userData';
+import { User } from './types/user.types';
 
 setup('authenticate', async ({ page }) => {
 
@@ -21,7 +22,8 @@ setup('authenticate', async ({ page }) => {
       route.continue();
     }
   });
-
+  let newUser: User;
+  newUser = createNewUser();
   //Register a new user
   await page.goto('/parabank/register.htm');
   await page.fill('[id="customer.firstName"]', newUser.firstname);
