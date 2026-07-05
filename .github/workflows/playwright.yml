@@ -32,6 +32,9 @@ jobs:
             echo "Attempt $i — not ready yet, waiting..."
             sleep 15
           done
+      - name: Show Docker logs
+        if: always()
+        run: docker logs parabank
 
       # Step 2: Setup Node.js
       - name: Setup Node.js
