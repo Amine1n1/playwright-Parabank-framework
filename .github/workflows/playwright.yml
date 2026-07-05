@@ -33,6 +33,16 @@ jobs:
             fi
             sleep 10
           done
+
+      - name: Initialize Parabank Database
+        run: |
+          echo "Triggering DB initialization..."
+          curl -s http://localhost:8080/parabank/index.htm > /dev/null
+          sleep 15
+          curl -s http://localhost:8080/parabank/register.htm > /dev/null
+          sleep 15
+          echo "Database should be initialized now"
+          
       - name: Show Docker logs
         if: always()
         run: docker logs parabank
