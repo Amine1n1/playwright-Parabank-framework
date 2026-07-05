@@ -19,18 +19,19 @@ jobs:
       - name: Start Parabank Docker
         run: |
           docker run -d -p 8080:8080 --name parabank parasoft/parabank
-          echo "Waiting for Parabank to start..."
-          sleep 30
+          echo "Waiting 60s for Parabank to initialize..."
+          sleep 60
 
       - name: Wait for Parabank to be ready
         run: |
-          for i in {1..20}; do
-            if curl -s -o /dev/null -w "%{http_code}" http://localhost:8080/parabank | grep -q "200"; then
+          for i in {1..15}; do
+            STATUS=$(curl -s -o /dev/null -w "%{http_code}" http://localhost:8080/parabank/index.htm)
+            echo "Attempt $i — HTTP status: $STATUS"
+            if [ "$STATUS" = "200" ] || [ "$STATUS" = "302" ]; then
               echo "Parabank is ready!"
               break
             fi
-            echo "Attempt $i — not ready yet, waiting..."
-            sleep 15
+            sleep 10
           done
       - name: Show Docker logs
         if: always()
